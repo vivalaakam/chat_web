@@ -12,6 +12,7 @@ import createReducers from './index'
 import { hasWindow } from '../utils/helpers'
 import history from '../utils/history'
 import sagas from './sagas'
+import persistState from 'redux-localstorage'
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -45,7 +46,7 @@ export default function configureStore(initialState) {
   const store = createStore(
     createReducers(),
     {},
-    compose(applyMiddleware(...middle))
+    compose(applyMiddleware(...middle), persistState(['user']))
   )
 
   store.updateState = (state) => {

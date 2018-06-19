@@ -1,0 +1,184 @@
+$main-color: #474f60;
+$blue-color: #4ba9df;
+$green-color: #80d426;
+$orange-color: #f4b723;
+$github-color: #3c4146;
+$google-color: #DC4E41;
+$facebook-color: #4267b2;
+
+.Btn {
+
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+  box-shadow: 0 0 1px 0 rgba(0, 0, 0, .12), 0 1px 11px 0 rgba(0, 0, 0, .24);
+  padding: 8px 18px;
+  margin: 0px 5px;
+  vertical-align: top;
+  font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+  &:first-child {
+    margin-left: 0px;
+  }
+
+  &:last-child {
+    margin-right: 0px;
+  }
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+
+  &.defaultScheme {
+    border: 1px solid $main-color;
+    background-color: $main-color;
+    color: #fff;
+
+    &:hover, &.active {
+      background-color: scale-color($main-color, $lightness: 85%);
+      color: $main-color;
+    }
+
+    &.inverted {
+      background-color: #fff;
+      color: $main-color;
+
+      &:hover, &.active {
+        background-color: $main-color;
+        color: #fff;
+      }
+    }
+  }
+
+  &.blueScheme {
+    border: 1px solid $blue-color;
+    background-color: $blue-color;
+    color: #fff;
+
+    &:hover, &.active {
+      background-color: scale-color($blue-color, $lightness: 85%);
+      color: $blue-color;
+    }
+
+    &.inverted {
+      background-color: #fff;
+      color: $blue-color;
+
+      &:hover, &.active {
+        background-color: $blue-color;
+        color: #fff;
+      }
+    }
+  }
+
+  &.greenScheme {
+    border: 1px solid $green-color;
+    background-color: $green-color;
+    color: #fff;
+
+    &:hover, &.active {
+      background-color: scale-color($green-color, $lightness: 85%);
+      color: $green-color;
+    }
+
+    &.inverted {
+      background-color: #fff;
+      color: $green-color;
+
+      &:hover, &.active {
+        background-color: $green-color;
+        color: #fff;
+      }
+    }
+  }
+
+  &.orangeScheme {
+    border: 1px solid $orange-color;
+    background-color: $orange-color;
+    color: #fff;
+
+    &:hover, &.active {
+      background-color: scale-color($orange-color, $lightness: 85%);
+      color: $orange-color;
+    }
+
+    &.inverted {
+      background-color: #fff;
+      color: $orange-color;
+
+      &:hover, &.active {
+        background-color: $orange-color;
+        color: #fff;
+      }
+    }
+  }
+
+  &.githubScheme {
+    border: 1px solid $github-color;
+    background-color: $github-color;
+    color: #fff;
+
+    &:hover, &.active {
+      background-color: scale-color($github-color, $lightness: 85%);
+      color: $github-color;
+    }
+
+    &.inverted {
+      background-color: #fff;
+      color: $github-color;
+
+      &:hover, &.active {
+        background-color: $github-color;
+        color: #fff;
+      }
+    }
+  }
+
+  &.googleScheme {
+    border: 1px solid $google-color;
+    background-color: $google-color;
+    color: #fff;
+
+    &:hover, &.active {
+      background-color: scale-color($google-color, $lightness: 85%);
+      color: $google-color;
+    }
+
+    &.inverted {
+      background-color: #fff;
+      color: $google-color;
+
+      &:hover, &.active {
+        background-color: $google-color;
+        color: #fff;
+      }
+    }
+  }
+
+  &.facebookScheme {
+    border: 1px solid $facebook-color;
+    background-color: $facebook-color;
+    color: #fff;
+
+    &:hover, &.active {
+      background-color: scale-color($facebook-color, $lightness: 85%);
+      color: $facebook-color;
+    }
+
+    &.inverted {
+      background-color: #fff;
+      color: $facebook-color;
+
+      &:hover, &.active {
+        background-color: $facebook-color;
+        color: #fff;
+      }
+    }
+  }
+}
+
+a.Btn {
+  text-decoration: none;
+}

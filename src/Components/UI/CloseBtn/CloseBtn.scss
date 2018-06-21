@@ -1,0 +1,15 @@
+.CloseBtn {
+  background-image: url("./assets/close.svg");
+  background-size: cover;
+  width: 25px;
+  height: 25px;
+  border: none;
+
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    cursor: pointer;
+    opacity: 0.75;
+  }
+}

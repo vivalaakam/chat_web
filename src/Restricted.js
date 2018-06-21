@@ -10,7 +10,7 @@ const Restricted = (props) => {
   return (
     <Redirect
       to={{
-        pathname: '/auth',
+        pathname: '/chats',
         state: { from: props.location }
       }}
     />

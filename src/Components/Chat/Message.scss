@@ -1,0 +1,20 @@
+.Message {
+  padding: 7.5px 12.5px;
+  max-width: 80%;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.incomming {
+  align-self: flex-start;
+  background-color: rgba(71, 79, 96, .125);
+  border-color: rgba(71, 79, 96, .19);
+  border-width: 1px;
+}
+
+.outgoing {
+  background-color: rgba(71, 79, 96, .25);
+  border-color: rgba(71, 79, 96, .375);
+  border-width: 1px;
+  align-self: flex-end;
+}

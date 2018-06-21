@@ -4,17 +4,27 @@
  * @flow
  */
 
-import { all, fork } from 'redux-saga/effects'
+import { all, call, fork } from 'redux-saga/effects'
 import { router } from 'redux-saga-router'
 import history from '../utils/history'
 
+import { onChatInit, watcher as chatWatcher } from './chat'
 import { watcher as userWatcher } from './user'
+import { watcher as chatsWatcher } from './chats'
+import { watcher as usersWatcher } from './users'
 
-const routes = {}
+const routes = {
+  * '/chats/:chatId'({ chatId }) {
+    yield call(onChatInit, { payload: chatId })
+  }
+}
 
 export default function* rootSaga() {
   const sagas = [
-    userWatcher()
+    chatWatcher(),
+    userWatcher(),
+    chatsWatcher(),
+    usersWatcher()
   ]
 
   if (history) {

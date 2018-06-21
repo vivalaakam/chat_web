@@ -1,0 +1,41 @@
+.Chat {
+  flex-basis: 75%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  flex-basis: 25px;
+  line-height: 25px;
+  background-color: #fff;
+  z-index: 2;
+  font-weight: 600;
+  color: #474f60;
+  margin-bottom: 5px;
+  padding: 7.5px 20px;
+  box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.formWrapper {
+  min-height: 40px;
+  padding: 7.5px 20px;
+  display: flex;
+}
+
+.form {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+}
+
+.textArea {
+  flex: 1 0 0;
+  width: auto;
+}
+
+.messages {
+  flex: 1
+}

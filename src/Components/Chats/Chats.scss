@@ -1,0 +1,11 @@
+.Chats {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+}
+
+.list {
+  flex: 1 0 0;
+  border-right: 1px solid rgba(71, 79, 96, .375);
+
+}

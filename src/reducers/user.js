@@ -12,7 +12,7 @@ const $$initialState = {
   loaded: false
 }
 
-const USER_UPDATE = 'USER_UPDATE'
+export const USER_UPDATE = 'USER_UPDATE'
 const USER_APPLY = 'USER_APPLY'
 
 
@@ -39,6 +39,10 @@ function* userApplyAction({ payload }) {
   } catch (e) {
     console.log('userApplyAction', e.message)
   }
+}
+
+export function getUser(state) {
+  return state.user
 }
 
 export function* watcher() {

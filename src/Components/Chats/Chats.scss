@@ -9,3 +9,21 @@
   border-right: 1px solid rgba(71, 79, 96, .375);
 
 }
+
+.enter {
+  transform: translateX(-100%);
+}
+
+.enterActive {
+  transform: translateX(0);
+  transition: all 1300ms ease-out;
+}
+
+.exit {
+  transform: translateX(0);
+}
+
+.exitActive {
+  transform: translateX(-100%);
+  transition: all 1300ms ease-out;
+}

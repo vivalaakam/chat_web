@@ -25,7 +25,7 @@ class ChatsContainer extends PureComponent {
       <ChatsComponent
         user={this.props.user}
         chats={this.props.chats}
-        parentUri={this.props.match.url}
+        location={this.props.location.pathname}
         parentPath={this.props.match.path}
       >
         <Route path={`/chats/:chatId`} component={Chat} />

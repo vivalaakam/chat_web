@@ -4,6 +4,7 @@
  * @flow
  */
 import React, { PureComponent } from 'react'
+import classnames from 'classnames'
 import { Link } from 'react-router-dom'
 
 import styles from './ChatRow.scss'
@@ -18,8 +19,12 @@ export default class ChatRowComponent extends PureComponent {
   }
 
   render() {
+    const link = `/chats/${this.props.chat.id}`
+    const style = classnames(styles.ChatRow, {
+      [styles.active]: link === this.props.location
+    })
     return (
-      <Link to={`${this.props.parentUri}/${this.props.chat.id}`} className={styles.ChatRow}>
+      <Link to={link} className={style}>
         <div className={styles.title}>{this.getTitle()}</div>
         {this.props.chat.last_message && <div className={styles.text}>{this.props.chat.last_message.message}</div>}
       </Link>

@@ -4,11 +4,9 @@
  * @flow
  */
 import React, { PureComponent } from 'react'
-import { Route } from 'react-router-dom'
 
 import styles from './Chats.scss'
 import ChatRowComponent from './ChatRow'
-import Chat from '../../Containers/Chat'
 
 export default class ChatsComponent extends PureComponent {
   render() {
@@ -24,7 +22,7 @@ export default class ChatsComponent extends PureComponent {
 
   renderChats() {
     return this.props.chats.map(chat => (
-      <ChatRowComponent parentUri={this.props.parentUri} chat={chat} user={this.props.user} key={chat.id} />
+      <ChatRowComponent location={this.props.location} chat={chat} user={this.props.user} key={chat.id} />
     ))
   }
 }

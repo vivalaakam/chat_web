@@ -8,10 +8,7 @@ import { Route } from 'react-router-dom'
 
 import styles from './Chats.scss'
 import ChatRowComponent from './ChatRow'
-import { loadableFactory } from '../../App'
-
-const Chat = loadableFactory(() => import('../../Containers/Chat'))
-
+import Chat from '../../Containers/Chat'
 
 export default class ChatsComponent extends PureComponent {
   render() {
@@ -20,7 +17,7 @@ export default class ChatsComponent extends PureComponent {
         <div className={styles.list}>
           {this.renderChats()}
         </div>
-        <Route path={`/chats/:chatId`} component={Chat} />
+        {this.props.children}
       </div>
     )
   }

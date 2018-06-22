@@ -19,7 +19,6 @@ export function loadableFactory(loader) {
 }
 
 const Chats = loadableFactory(() => import('./Containers/Chats'))
-const Redirect = loadableFactory(() => import('./Restricted'))
 
 const userStore = configureStore(window.__INITIAL_STATE__ || {})
 
@@ -29,7 +28,6 @@ class App extends Component {
       <Wrapper store={userStore}>
         <div id="inner">
           <Auth />
-          <Redirect from="/" to="/chats" />
           <Route path="/chats" component={Chats} />
         </div>
       </Wrapper>

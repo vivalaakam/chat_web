@@ -43,10 +43,12 @@ export default function configureStore(initialState) {
     middle.push(router.routerMiddleware(history))
   }
 
+  const composeEnhancers = (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
+
   const store = createStore(
     createReducers(),
     {},
-    compose(applyMiddleware(...middle), persistState(['user']))
+    composeEnhancers(applyMiddleware(...middle), persistState(['user']))
   )
 
   store.updateState = (state) => {

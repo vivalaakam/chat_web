@@ -4,6 +4,7 @@
  * @flow
  */
 import React, { PureComponent } from 'react'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
 
 import styles from './Chats.scss'
 import ChatRowComponent from './ChatRow'
@@ -15,7 +16,16 @@ export default class ChatsComponent extends PureComponent {
         <div className={styles.list}>
           {this.renderChats()}
         </div>
-        {this.props.children}
+        <TransitionGroup className={styles.messages}  timeout={3000}>
+          <CSSTransition classNames={{
+            enter: styles.enter,
+            enterActive: styles.enterActive,
+            exit: styles.exit,
+            exitActive: styles.enterActive,
+          }} timeout={2300}>
+            {this.props.children}
+          </CSSTransition>
+        </TransitionGroup>
       </div>
     )
   }

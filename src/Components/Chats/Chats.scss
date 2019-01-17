@@ -27,3 +27,11 @@
   transform: translateX(-100%);
   transition: all 1300ms ease-out;
 }
+
+.messages {
+  flex-basis: 75%;
+  display: flex;
+  &:empty {
+    display: none;
+  }
+}

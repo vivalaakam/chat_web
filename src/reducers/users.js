@@ -42,7 +42,7 @@ function* onUsersInit() {
   try {
     const user = yield select(getUser)
     const users = yield userApi.all()
-    const data = users.data.filter((u) => (u.id != user.id))
+    const data = users.data.filter((u) => (u.id !== user.id))
     yield put(usersReset(data))
   } catch (e) {
     console.log('onUsersInit', e.message)

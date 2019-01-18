@@ -7,6 +7,7 @@
 import { createAction } from 'redux-actions'
 import { fork, put, takeLatest } from 'redux-saga/effects'
 import token from '../utils/token'
+import PushManager from '../utils/PushManager'
 
 const $$initialState = {
   loaded: false
@@ -35,6 +36,12 @@ function* userApplyAction({ payload }) {
   try {
     yield put(userUpdate(payload))
     token.setToken(payload.token)
+
+    const subscription = yield PushManager.single.subscribeUser()
+
+    if (subscription) {
+      localStorage.setItem('subscription', subscription.data.id)
+    }
 
   } catch (e) {
     console.log('userApplyAction', e.message)

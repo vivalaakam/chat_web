@@ -34,7 +34,6 @@ export const userApply = createAction(USER_APPLY)
 
 function* userApplyAction({ payload }) {
   try {
-    yield put(userUpdate(payload))
     token.setToken(payload.token)
 
     const subscription = yield PushManager.single.subscribeUser()
@@ -42,7 +41,7 @@ function* userApplyAction({ payload }) {
     if (subscription) {
       localStorage.setItem('subscription', subscription.data.id)
     }
-
+    yield put(userUpdate(payload))
   } catch (e) {
     console.log('userApplyAction', e.message)
   }

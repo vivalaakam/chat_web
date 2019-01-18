@@ -23,6 +23,7 @@ export default function loginPopup(provider) {
 
     window.addEventListener('message', receiveMessage, false)
     const features = `status=no,scrollbar=yes,resizable=yes,width=1000,height=600,top=${topPos},left=${leftPos}`
+    console.log(`${process.env.PROXY_SERVER}/auth/${provider}`);
     win = window.open(`${process.env.PROXY_SERVER}/auth/${provider}`, 'auth_popup', features)
   })
 }

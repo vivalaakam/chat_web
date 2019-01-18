@@ -28,7 +28,7 @@ class App extends Component {
       <Wrapper store={userStore}>
         <div id="inner">
           <Auth />
-          <Redirect to="/chats" />
+          {/*<Redirect to="/chats" />*/}
 
           <Route path="/chats" component={Chats} />
         </div>

@@ -12,7 +12,7 @@ export default function Wrapper({ store, children }) {
   if (history) {
     return (
       <Provider store={store}>
-        <ConnectedRouter history={history}>
+        <ConnectedRouter history={history} store={store}>
           {children}
         </ConnectedRouter>
       </Provider>

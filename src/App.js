@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import { Redirect, Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import Loadable from 'react-loadable'
 
 import Wrapper from './Wrapper'
 import Loading from './Loading'
 import configureStore from './reducers/store'
 import Auth from './Containers/Auth'
+import Home from './Containers/Home'
+import Terms from './Containers/Terms'
 
 export function loadableFactory(loader) {
   return Loadable({
@@ -28,9 +30,11 @@ class App extends Component {
       <Wrapper store={userStore}>
         <div id="inner">
           <Auth />
-          <Redirect to="/chats" />
-
-          <Route path="/chats" component={Chats} />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route path="/chats" component={Chats} />
+            <Route path="/terms" component={Terms} />
+          </Switch>
         </div>
       </Wrapper>
     )

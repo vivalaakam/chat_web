@@ -78,7 +78,7 @@ function getClientEnvironment(publicUrl) {
         // images into the `src` and `import` them in code to get their paths.
         PUBLIC_URL: publicUrl,
         VAPID_PUBLIC_KEY: process.env.VAPID_PUBLIC_KEY,
-        PROXY_SERVER: 'http://localhost:4000'
+        PROXY_SERVER: process.env.PROXY_SERVER
       }
     )
   // Stringify all values so we can feed into Webpack DefinePlugin

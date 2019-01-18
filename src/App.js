@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { Redirect, Route } from 'react-router-dom'
 import Loadable from 'react-loadable'
 
 import Wrapper from './Wrapper'
@@ -28,6 +28,8 @@ class App extends Component {
       <Wrapper store={userStore}>
         <div id="inner">
           <Auth />
+          <Redirect to="/chats" />
+
           <Route path="/chats" component={Chats} />
         </div>
       </Wrapper>

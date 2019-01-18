@@ -39,16 +39,8 @@ function getServedPath(appPackageJson) {
 }
 
 const moduleFileExtensions = [
-  'web.mjs',
-  'mjs',
-  'web.js',
   'js',
-  'web.ts',
-  'ts',
-  'web.tsx',
-  'tsx',
   'json',
-  'web.jsx',
   'jsx',
 ]
 
@@ -75,7 +67,6 @@ module.exports = {
   appIndexJs: resolveModule(resolveApp, 'src/index'),
   appPackageJson: resolveApp('package.json'),
   appSrc: resolveApp('src'),
-  appTsConfig: resolveApp('tsconfig.json'),
   yarnLockFile: resolveApp('yarn.lock'),
   testsSetup: resolveModule(resolveApp, 'src/setupTests'),
   proxySetup: resolveApp('src/setupProxy.js'),

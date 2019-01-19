@@ -29,7 +29,7 @@ function sort($$state) {
   return $$state
     .map(c => ({
       ...c,
-      last: c.last || new Date((c.last_message && c.last_message.inserted_at) || c.inserted_at)
+      last: c.last || new Date((c.last_message && c.last_message.inserted_at) || new Date(c.inserted_at))
     }))
     .sort((a, b) => b.last - a.last)
 }

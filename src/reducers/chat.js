@@ -9,8 +9,8 @@ import { createAction } from 'redux-actions'
 import { cancel, fork, put, select, take, takeLatest } from 'redux-saga/effects'
 import Chats from '../api/chats'
 import { getMessages, messagesReset, messagesUpdate } from './messages'
-import { getUser } from './user'
 import { getCurrentDateTime } from '../utils/date'
+import WS from '../utils/WS'
 
 const $$initialState = {
   loaded: false,
@@ -63,32 +63,23 @@ export function* onChatInit({ payload }) {
     const resp = yield chatsAPI.fetch(payload)
     yield put(chatUpdate({ ...resp.data, can_load: resp.data.messages.length === 25 }))
     yield put(messagesReset(resp.data.messages))
-
-    const user = yield select(getUser)
-    chatSubscription = yield fork(chatSubscribe, resp.data.id, user.token)
+    chatSubscription = yield fork(chatSubscribe, resp.data.id)
   } catch (e) {
     console.log('onChatInit', e.message)
   }
 }
 
 
-function* chatSubscribe(chatId, guardian_token) {
+function* chatSubscribe(chatId) {
   let subscription
   try {
 
     subscription = eventChannel((emitter) => {
-      const socket = new Socket(`${process.env.PROXY_SERVER.replace(/^http/, 'ws')}/socket`, {
-        params: { guardian_token }
-      })
-
-      socket.connect()
-
-      const chan = socket.channel(`chat:${chatId}`, {})
-      chan.join()
+      const chan = WS.single.join(`chat:${chatId}`, {})
       chan.on('on_message', emitter)
 
       return () => {
-        socket.disconnect()
+        WS.single.leave(chan)
       }
     })
 

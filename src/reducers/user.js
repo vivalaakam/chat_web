@@ -5,9 +5,12 @@
  */
 
 import { createAction } from 'redux-actions'
-import { fork, put, takeLatest } from 'redux-saga/effects'
+import { fork, put, select, take, takeLatest } from 'redux-saga/effects'
 import token from '../utils/token'
 import PushManager from '../utils/PushManager'
+import { eventChannel } from 'redux-saga'
+import WS from '../utils/WS'
+import { chatsUpdate } from './chats'
 
 const $$initialState = {
   loaded: false
@@ -41,9 +44,37 @@ function* userApplyAction({ payload }) {
     if (subscription) {
       localStorage.setItem('subscription', subscription.data.id)
     }
+    yield fork(userSubscribe)
     yield put(userUpdate(payload))
   } catch (e) {
     console.log('userApplyAction', e.message)
+  }
+}
+
+function* userSubscribe() {
+  let subscription
+  try {
+    const user = yield select(getUser)
+    subscription = eventChannel((emitter) => {
+      const chan = WS.single.join(`user:${user.id}`, {})
+      chan.on('on_chat', emitter)
+
+      return () => {
+        WS.single.leave(chan)
+      }
+    })
+
+    while (true) {
+      const data = yield take(subscription)
+      yield put(chatsUpdate(data))
+    }
+
+  } catch (e) {
+    console.log('chatSubscribe', e.message)
+  } finally {
+    if (subscription.close) {
+      subscription.close()
+    }
   }
 }
 
@@ -53,4 +84,8 @@ export function getUser(state) {
 
 export function* watcher() {
   yield fork(takeLatest, USER_APPLY, userApplyAction)
+
+  if (token.getToken()) {
+    yield fork(userSubscribe)
+  }
 }

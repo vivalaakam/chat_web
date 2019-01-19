@@ -26,8 +26,20 @@ export default class ChatRowComponent extends PureComponent {
     return (
       <Link to={link} className={style}>
         <div className={styles.title}>{this.getTitle()}</div>
-        {this.props.chat.last_message && <div className={styles.text}>{this.props.chat.last_message.message}</div>}
+        {this.renderMessage()}
       </Link>
+    )
+  }
+
+  renderMessage() {
+    if (!this.props.chat.last_message) {
+      return (
+        <div className={styles.text}>Пока нет сообщений</div>
+      )
+    }
+
+    return (
+      <div className={styles.text}>{this.props.chat.last_message.message}</div>
     )
   }
 }

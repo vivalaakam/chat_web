@@ -1,0 +1,17 @@
+.ChatUserRow {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 25px;
+  align-items: center;
+  border-bottom: 1px solid rgba(71, 79, 96, .375);
+
+  &:hover {
+    background-color: rgba(71, 79, 96, .125);
+  }
+
+  .create {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

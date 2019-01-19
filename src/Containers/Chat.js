@@ -21,7 +21,6 @@ const mapDispatchToProps = dispatch => ({
 
 class ChatContainer extends PureComponent {
   render() {
-    console.log(this.props);
     return (
       <ChatComponent
         user={this.props.user}

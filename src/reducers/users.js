@@ -5,11 +5,12 @@
  */
 
 import { createAction } from 'redux-actions'
+import { push } from 'connected-react-router'
 import { fork, put, select, takeLatest } from 'redux-saga/effects'
 import Users from '../api/users'
 import { getUser } from './user'
 import Chats from '../api/chats'
-import { chatUpdate } from './chat'
+import { chatsAdd } from './chats'
 
 const userApi = new Users()
 const chatApi = new Chats()
@@ -36,9 +37,8 @@ export const usersUpdate = createAction(USERS_UPDATE)
 export const usersReset = createAction(USERS_RESET)
 export const usersFetch = createAction(USERS_FETCH)
 export const usersPrivateChat = createAction(USERS_PRIVATE_CHAT)
-export const usersInit = createAction(USERS_INIT)
 
-function* onUsersInit() {
+export function* onUsersInit() {
   try {
     const user = yield select(getUser)
     const users = yield userApi.all()
@@ -53,13 +53,16 @@ function* onUsersPrivateChat({ payload }) {
   try {
     const user = yield select(getUser)
     const chat = yield chatApi.create({ chat: { name: 'private', is_private: true, users: [payload.id, user.id] } })
-    yield put(chatUpdate(chat.data))
+    yield put(push(`/chats/${chat.data.id}`))
+    yield put(chatsAdd({
+      ...chat.data,
+      last: new Date()
+    }))
   } catch (e) {
     console.log('onUsersPrivateChat', e.message)
   }
 }
 
 export function* watcher() {
-  yield fork(takeLatest, USERS_INIT, onUsersInit)
   yield fork(takeLatest, USERS_PRIVATE_CHAT, onUsersPrivateChat)
 }

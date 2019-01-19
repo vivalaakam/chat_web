@@ -39,14 +39,14 @@ if (process.env.NODE_ENV === 'development' && hasWindow) {
 export default function configureStore(initialState) {
   const middle = [...middleware]
   if (history) {
-    const router = require('react-router-redux')
+    const router = require('connected-react-router')
     middle.push(router.routerMiddleware(history))
   }
 
   const composeEnhancers = (window && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
 
   const store = createStore(
-    createReducers(),
+    createReducers(history),
     {},
     composeEnhancers(applyMiddleware(...middle), persistState(['user']))
   )

@@ -11,9 +11,12 @@ import history from '../utils/history'
 import { onChatInit, watcher as chatWatcher } from './chat'
 import { watcher as userWatcher } from './user'
 import { watcher as chatsWatcher } from './chats'
-import { watcher as usersWatcher } from './users'
+import { onUsersInit, watcher as usersWatcher } from './users'
 
 const routes = {
+  * '/chats'() {
+    yield call(onUsersInit)
+  },
   * '/chats/:chatId'({ chatId }) {
     yield call(onChatInit, { payload: chatId })
   }

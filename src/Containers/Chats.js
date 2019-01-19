@@ -6,10 +6,11 @@
 
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 import ChatsComponent from '../Components/Chats/Chats'
 import { loadableFactory } from '../App'
+import ChatUsers from './ChatUsers'
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -25,10 +26,14 @@ class ChatsContainer extends PureComponent {
       <ChatsComponent
         user={this.props.user}
         chats={this.props.chats}
+        history={this.props.history}
         location={this.props.location.pathname}
         parentPath={this.props.match.path}
       >
-        <Route path={`/chats/:chatId`} component={Chat} />
+        <Switch>
+          <Route exact path={`/chats`} component={ChatUsers} />
+          <Route path={`/chats/:chatId`} component={Chat} />
+        </Switch>
       </ChatsComponent>
     )
   }

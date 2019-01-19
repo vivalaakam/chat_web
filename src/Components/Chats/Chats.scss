@@ -2,36 +2,45 @@
   display: flex;
   flex-direction: row;
   flex: 1;
-}
 
-.list {
-  flex: 1 0 0;
-  border-right: 1px solid rgba(71, 79, 96, .375);
 
-}
-
-.enter {
-  transform: translateX(-100%);
-}
-
-.enterActive {
-  transform: translateX(0);
-  transition: all 1300ms ease-out;
-}
-
-.exit {
-  transform: translateX(0);
-}
-
-.exitActive {
-  transform: translateX(-100%);
-  transition: all 1300ms ease-out;
-}
-
-.messages {
-  flex-basis: 75%;
-  display: flex;
-  &:empty {
-    display: none;
+  .create {
+    margin: 7.5px 20px;
   }
+
+  .list {
+    flex: 1 0 0;
+    border-right: 1px solid rgba(71, 79, 96, .375);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .enter {
+    transform: translateX(-100%);
+  }
+
+  .enterActive {
+    transform: translateX(0);
+    transition: all 1300ms ease-out;
+  }
+
+  .exit {
+    transform: translateX(0);
+  }
+
+  .exitActive {
+    transform: translateX(-100%);
+    transition: all 1300ms ease-out;
+  }
+
+  .messages {
+    flex-basis: 75%;
+    display: flex;
+    flex-direction: column;
+
+    &:empty {
+      display: none;
+    }
+  }
+
 }

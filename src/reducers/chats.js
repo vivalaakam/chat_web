@@ -15,6 +15,7 @@ const $$initialState = []
 
 const CHATS_UPDATE = 'CHATS_UPDATE'
 const CHATS_RESET = 'CHATS_RESET'
+const CHATS_ADD = 'CHATS_ADD'
 
 function replace($$state, item) {
   const tmp = $$state.reduce((state, chat) => ({ ...state, [chat.id]: chat }), {})
@@ -39,12 +40,15 @@ export default function chats($$state = $$initialState, { type, payload }) {
       return replace($$state, payload)
     case CHATS_RESET:
       return sort(payload)
+    case CHATS_ADD:
+      return sort($$state.concat(payload))
     default:
       return $$state
   }
 }
 
 export const chatsReset = createAction(CHATS_RESET)
+export const chatsAdd = createAction(CHATS_ADD)
 export const chatsUpdate = createAction(CHATS_UPDATE)
 
 function* onChatsUpdate() {

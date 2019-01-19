@@ -6,6 +6,8 @@
 
 import token from '../utils/token'
 
+console.log(process.env.PROXY_SERVER);
+
 export default class Rest {
   url = process.env.PROXY_SERVER
 

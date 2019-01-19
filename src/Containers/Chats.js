@@ -22,6 +22,10 @@ const Chat = loadableFactory(() => import('./Chat'))
 
 class ChatsContainer extends PureComponent {
   render() {
+    if (!(this.props.user && this.props.user.id)) {
+      return null
+    }
+
     return (
       <ChatsComponent
         user={this.props.user}

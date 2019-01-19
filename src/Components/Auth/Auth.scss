@@ -6,6 +6,13 @@
 
   display: flex;
   justify-content: center;
-  align-items: center;
   padding: 20px;
+
+  flex-direction: column;
+
+  button {
+    margin-bottom: 7.5px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
 }

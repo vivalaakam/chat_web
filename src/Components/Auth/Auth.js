@@ -14,36 +14,18 @@ export default class Auth extends PureComponent {
   render() {
     return (
       <Modal className={styles.Auth}>
-        <Btn onClick={this.onClickFacebook} scheme="facebook">
-          Login with Facebook
-        </Btn>
-        <Btn onClick={this.onClickGoogle} scheme="google">
-          Login with Google
+        <Btn onClick={this.onClickLogin}>
+          Login
         </Btn>
       </Modal>
     )
   }
 
-  onClickFacebook = (e) => {
+  onClickLogin = (e) => {
     if (e) {
       e.preventDefault()
     }
-    loginPopup('facebook')
-      .then((data) => {
-        this.props.applyAuth(data)
-      })
-      .catch((error) => {
-        /* eslint no-console: ["error", { allow: ["log"] }] */
-        console.log(error.message)
-      })
-  }
-
-  onClickGoogle = (e) => {
-    if (e) {
-      e.preventDefault()
-    }
-
-    loginPopup('google')
+    loginPopup('identity')
       .then((data) => {
         this.props.applyAuth(data)
       })

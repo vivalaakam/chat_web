@@ -10,7 +10,7 @@ import { fork, put, select, takeLatest } from 'redux-saga/effects'
 import Users from '../api/users'
 import { getUser } from './user'
 import Chats from '../api/chats'
-import { chatsAdd } from './chats'
+import { chatsUpdate } from './chats'
 
 const userApi = new Users()
 const chatApi = new Chats()
@@ -54,7 +54,8 @@ function* onUsersPrivateChat({ payload }) {
     const user = yield select(getUser)
     const chat = yield chatApi.create({ chat: { name: 'private', is_private: true, users: [payload.id, user.id] } })
     yield put(push(`/chats/${chat.data.id}`))
-    yield put(chatsAdd({
+
+    yield put(chatsUpdate({
       ...chat.data,
       last: new Date()
     }))

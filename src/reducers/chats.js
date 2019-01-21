@@ -51,6 +51,10 @@ export const chatsReset = createAction(CHATS_RESET)
 export const chatsAdd = createAction(CHATS_ADD)
 export const chatsUpdate = createAction(CHATS_UPDATE)
 
+export function getChats(state) {
+  return state.chats
+}
+
 function* onChatsUpdate() {
   try {
     const { token } = yield select(getUser)
